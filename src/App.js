@@ -1,11 +1,29 @@
 //TODO: STEP 1 - Import the useState hook.
-import React from "react";
+import React, {useState} from "react"; 
 import "./App.css";
 import BottomRow from "./BottomRow";
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
+    // My code starts here
+  const [scoreForHomeTeam, setTheHomeTeamScore] = useState(0);
+  const [scoreForAwayTeam, setTheAwayTeamScore] = useState(0);
 
+    const makesTouchDown = e => {
+        setTheHomeTeamScore(scoreForHomeTeam + 7);
+    }
+
+    const makesOnlyGoal = e => {
+        setTheHomeTeamScore(scoreForHomeTeam + 3);
+    }
+
+    const makesAwayTouchDown = e => {
+        setTheAwayTeamScore(scoreForAwayTeam + 7);
+    }
+    const makesAwayGoal = e => {
+        setTheAwayTeamScore(scoreForAwayTeam + 3);
+    }
+    // My code ends here
   return (
     <div className="container">
       <section className="scoreboard">
@@ -15,25 +33,25 @@ function App() {
 
             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
 
-            <div className="home__score">32</div>
+            <div className="home__score">{scoreForHomeTeam}</div>
           </div>
           <div className="timer">00:03</div>
           <div className="away">
-            <h2 className="away__name">Tigers</h2>
-            <div className="away__score">32</div>
+                      <h2 className="away__name">Tigers</h2>
+                      <div className="away__score">{scoreForAwayTeam}</div>
           </div>
         </div>
         <BottomRow />
       </section>
       <section className="buttons">
         <div className="homeButtons">
-          {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown">Home Touchdown</button>
-          <button className="homeButtons__fieldGoal">Home Field Goal</button>
+                  {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
+                  <button className="homeButtons__touchdown"onClick = {makesTouchDown}>Home Touchdown</button>
+                  <button className="homeButtons__fieldGoal"onClick = {makesOnlyGoal}>Home Field Goal</button>
         </div>
-        <div className="awayButtons">
-          <button className="awayButtons__touchdown">Away Touchdown</button>
-          <button className="awayButtons__fieldGoal">Away Field Goal</button>
+              <div className="awayButtons">
+                  <button className="awayButtons__touchdown"onClick = {makesAwayTouchDown}>Away Touchdown</button>
+                  <button className="awayButtons__fieldGoal"onClick = {makesAwayGoal}>Away Field Goal</button>
         </div>
       </section>
     </div>
